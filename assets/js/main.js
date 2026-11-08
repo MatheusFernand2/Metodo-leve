@@ -19,7 +19,15 @@ const CONFIG = {
   guaranteeDays: 7,                         // garantia (Hotmart/Kiwify: 7 dias é o padrão)
 
   /* SUPORTE */
-  supportEmail: "contato@SEU-DOMINIO.com.br",
+  supportEmail: "contato@SEU-DOMINIO.com.br", // TODO: e-mail real de suporte
+
+  /* RESPONSÁVEL (aparece no rodapé, nos Termos e na Política de Privacidade)
+     name: nome completo da pessoa ou razão social da empresa
+     document: CNPJ, se houver (deixe vazio para pessoa física — não publique CPF) */
+  owner: {
+    name: "",      // TODO: nome do responsável
+    document: "",
+  },
 
   /* PROVA SOCIAL — só ative quando houver depoimentos REAIS no HTML */
   showTestimonials: false,
@@ -48,6 +56,15 @@ function applyConfig() {
   document.querySelectorAll("[data-support-email]").forEach((el) => {
     el.href = `mailto:${CONFIG.supportEmail}`;
     if (!el.closest(".footer__links")) el.textContent = CONFIG.supportEmail;
+  });
+
+  const owner = CONFIG.owner || {};
+  const ownerLabel = owner.name
+    ? owner.name + (owner.document ? `, CNPJ ${owner.document}` : "")
+    : "Método Leve 28";
+  set("[data-owner]", ownerLabel);
+  document.querySelectorAll("[data-owner-footer]").forEach((el) => {
+    el.textContent = owner.name ? `Responsável: ${ownerLabel}.` : "";
   });
 
   const social = document.querySelector("[data-testimonials]");
