@@ -19,7 +19,7 @@ Tudo que depende da oferta real está concentrado em `assets/js/main.js`, no obj
 
 | Chave | O que é | Estado atual |
 |---|---|---|
-| `checkoutUrl` | Link de pagamento (Hotmart, Kiwify, Eduzz, Cakto…) | **vazio** — os botões de compra rolam até a FAQ e não fingem comprar nada |
+| `checkoutUrl` | Link de pagamento | `https://pay.kiwify.com.br/82aH6Qt` (Kiwify) |
 | `price` | Valor à vista, sem "R$" | `"97"` (sugestão; confirme na plataforma) |
 | `installments` | Texto do parcelamento | `"ou em até 12x no cartão"` — troque pelo valor real da parcela quando a plataforma calcular |
 | `guaranteeDays` | Dias de garantia | `7` (padrão Hotmart/Kiwify e exigido pelo CDC para compras online) |
@@ -53,11 +53,12 @@ Como não havia um produto definido, a página foi construída em cima de uma of
 - **Mockups**: os e-books e o celular são construídos em CSS (sem imagens), então mudam de cor/título editando o HTML. Se você tiver as capas reais, troque o conteúdo de `.book__cover` por `<img>`.
 - **Movimento**: uma única sequência de entrada no hero; FAQ com acordeão animado; barra fixa de CTA no mobile que some sobre a oferta e o rodapé. `prefers-reduced-motion` é respeitado.
 
-## Publicar na Cloudflare Pages
+## Publicação (Cloudflare Workers)
 
-1. Crie um repositório com esta pasta (ou arraste a pasta no painel do Pages).
-2. Framework preset: **None**. Build command: vazio. Output directory: `/`.
-3. Depois do deploy, preencha `CONFIG.checkoutUrl` e faça um novo deploy.
+O Worker `metodoleve2` está ligado a este repositório. Todo push na branch `main`
+publica o site automaticamente em https://metodoleve2.ariess.workers.dev.
+A configuração fica em `wrangler.jsonc`; `.assetsignore` impede que README e
+arquivos de configuração sejam publicados.
 
 ## Testes feitos
 
