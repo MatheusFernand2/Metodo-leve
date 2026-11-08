@@ -11,7 +11,7 @@ const CONFIG = {
      Cole aqui o link de pagamento da plataforma (Hotmart, Kiwify,
      Eduzz, Cakto, Stripe…). Enquanto estiver vazio, os botões de
      compra rolam até a FAQ em vez de fingir que compram algo. */
-  checkoutUrl: "",
+  checkoutUrl: "https://pay.kiwify.com.br/82aH6Qt",
 
   /* OFERTA — confirme na plataforma antes de publicar */
   price: "97",                              // valor à vista, sem "R$"
